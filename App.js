@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaView, StyleSheet, StatusBar, useColorScheme } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
-import { ThemeContext } from './styles/ThemeContext';
+import useTheme from './hooks/UseTheme';
+import { ThemeProvider } from './context/ThemeContext';
+import { AppStyles } from './styles/AppStyles';
 import Colors from './styles/Colors';
+
 import Navigator from './navigation/Navigator';
 import LoadingScreen from './screens/LoadingScreen';
+
 import { initFoodTable } from './database/dataFood';
 import { initRationTable, initRationFoodTable } from './database/dataRation';
 
 
 export default function App() {
-  const systemTheme = useColorScheme(); //Определение системной темы
-  const [isDark, setIsDark] = useState(systemTheme === 'dark');
-  const [isLoading, setIsLoading] = useState(true);
-  
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
+  const { theme } = useTheme();
+  const themeColors = Colors[theme];
+  const styles = useMemo(() => AppStyles(themeColors), [themeColors]);
 
-  useEffect(() => { 
-    if (systemTheme) {
-      setIsDark(systemTheme === 'dark');
-    }
-  }, [systemTheme]); // Если системная тема поменялась
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function loadApp() {
@@ -45,21 +41,12 @@ export default function App() {
   }
 
   return (
-      <SafeAreaView style={styles.savearea}>
-        <ThemeContext.Provider value={{ isDark, toggleTheme }}>
+     <ThemeProvider>
+          <SafeAreaView style={styles.savearea}>
             <NavigationContainer>
               <Navigator />
             </NavigationContainer>
-        </ThemeContext.Provider>
-      </SafeAreaView>
+          </SafeAreaView>
+      </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  savearea: {
-    height: '100%',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    backgroundColor: Colors.mainColor,
-  },
-
-});

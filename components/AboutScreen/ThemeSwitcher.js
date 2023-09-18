@@ -1,18 +1,22 @@
 import React, {useContext} from 'react';
-import { View, StyleSheet, Switch } from 'react-native';
+import { View, StyleSheet, Switch, Text } from 'react-native';
 
-import { ThemeContext } from '../../styles/ThemeContext';
+import { ThemeContext } from '../../context/ThemeContext';
 import Colors from '../../styles/Colors';
 
 const ThemeSwitcher = () => {
-  const { isDark, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <View style={styles.container}>
+      <Text>{theme === 'light' ? 'Светлая тема' : 'Темная тема'}</Text>
       <Switch
-            value={isDark}
-            onValueChange={toggleTheme}
-          />
+        trackColor={{ false: '#767577', true: '#81b0ff' }}
+        thumbColor={theme === 'light' ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleTheme}
+        value={theme === 'dark'}
+      />
     </View>
   );
 };
