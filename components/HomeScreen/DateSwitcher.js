@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-
-import Colors from '../../styles/Colors';
+import useTheme from '../../hooks/useTheme';
+import { DateSwitcherStyles } from '../../styles/HomeScreen/DateSwitcherStyles';
 
 const DateSwitcher = () => {
+  const { styles } = useTheme(DateSwitcherStyles);
+
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handlePrevDay = () => {
@@ -23,11 +25,11 @@ const DateSwitcher = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handlePrevDay}>
-        <MaterialCommunityIcons
+      <TouchableOpacity onPress={handlePrevDay} disabled={isPrevDisabled}>
+        <MaterialCommunityIcons display={isPrevDisabled ? 'none' : 'flex'}
           name="chevron-left"
           size={40}
-          color={isPrevDisabled ? '#ccc' : '#000'}
+          color={styles.icon}
         />
       </TouchableOpacity>
       <Text style={styles.dateText}>{selectedDate.toLocaleDateString('ru-RU')}</Text>
@@ -35,26 +37,11 @@ const DateSwitcher = () => {
         <MaterialCommunityIcons display={isNextDisabled ? 'none' : 'flex'}
           name="chevron-right"
           size={40}
-          color={'#000'}
+          color={styles.icon}
         />
       </TouchableOpacity>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 10,
-    backgroundColor: Colors.secondaryColor,
-    borderRadius: 10,
-  },
-  dateText: {
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-});
 
 export default DateSwitcher;

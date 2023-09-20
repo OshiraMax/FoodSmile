@@ -1,13 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView} from 'react-native';
+import { View } from 'react-native';
 
 import DateSwitcher from '../components/HomeScreen/DateSwitcher';
 import CaloriesButton from '../components/HomeScreen/CaloriesButton';
 import LogFood from '../components/HomeScreen/LogFood';
 
-import { globalStyles } from '../styles/GlobalStyles';
+import useTheme from '../hooks/useTheme';
+import { GlobalStyles } from '../styles/GlobalStyles';
+import { HomeScreenStyles } from '../styles/HomeScreen/HomeScreenStyles';
 
 const HomeScreen = () => {
+    const { styles } = useTheme(HomeScreenStyles);
+    const globalStyles = useTheme(GlobalStyles);
 
 return (
         <View style={globalStyles.container}>
@@ -20,15 +24,5 @@ return (
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    dateAndCalories: {
-        marginTop: 20,
-        width: '100%',
-        height: '50%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
 
 export default HomeScreen;

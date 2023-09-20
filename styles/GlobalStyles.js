@@ -1,10 +1,15 @@
 import { StyleSheet } from 'react-native';
 
-import Colors from './Colors';
-
-export const globalStyles = StyleSheet.create({
+export const GlobalStyles = (themeColors) => StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.backgroundColor,
+        backgroundColor: themeColors.backgroundColor,
+    },
+});
+
+export const globalStyles = (themeColors) => StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: themeColors.backgroundColor,
     },
 });

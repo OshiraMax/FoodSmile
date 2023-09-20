@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, FlatList, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 
-import Colors from '../../styles/Colors';
+import useTheme from '../../hooks/useTheme';
+import { LogFoodStyles } from '../../styles/HomeScreen/LogFoodStyles';
 
 const DATA = [ 
   { id: '1', time: '10:00', name: 'Яблоко', calories: 50 },
@@ -13,24 +14,26 @@ const DATA = [
   { id: '7', time: '22:00', name: 'Творог', calories: 70 },
 ];
 
-const Item = ({ time, name, calories, onDelete }) => (
-  <View style={styles.item}>
-    <Text style={styles.itemText}>{time}</Text>
-    <Text style={styles.itemText}>{name}</Text>
-    <Text style={styles.itemText}>{calories}</Text>
-    <TouchableOpacity onPress={onDelete}>
-      <Text style={styles.itemText}>Удалить</Text>
-    </TouchableOpacity>
-  </View>
-);
-
 const LogFood = () => {
+  const { styles } = useTheme(LogFoodStyles);
+  
   const [data, setData] = useState(DATA);
 
   const handleDelete = id => {
     const newData = data.filter(item => item.id !== id);
     setData(newData);
   };
+
+  const Item = ({ time, name, calories, onDelete }) => (
+    <View style={styles.item}>
+      <Text style={styles.itemText}>{time}</Text>
+      <Text style={styles.itemText}>{name}</Text>
+      <Text style={styles.itemText}>{calories}</Text>
+      <TouchableOpacity onPress={onDelete}>
+        <Text style={styles.itemText}>Удалить</Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   const renderItem = ({ item }) => (
     <Item
@@ -53,30 +56,5 @@ const LogFood = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    marginTop: 20,
-    marginBottom: 20,
-  },
-
-  item: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 10,
-    marginVertical: 8,
-    backgroundColor: Colors.secondaryColor,
-    borderRadius: 10,
-  },
-  
-  itemText: {
-    flex: 1,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-});
 
 export default LogFood;

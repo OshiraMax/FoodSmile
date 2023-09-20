@@ -1,19 +1,19 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
+import Colors from '../styles/Colors';
 
-const useTheme = () => {
+const useTheme = (getStyleFunction) => {
   const context = useContext(ThemeContext);
 
   if (!context) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
 
-  const { theme, toggleTheme } = context;
+  const { theme } = context;
+  const themeColors = Colors[theme];
+  const styles = useMemo(() => getStyleFunction(themeColors), [themeColors, getStyleFunction]);
 
-  return {
-    theme,
-    toggleTheme
-  };
+  return { styles };
 };
 
 export default useTheme;

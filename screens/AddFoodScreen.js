@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { globalStyles } from '../styles/GlobalStyles';
+import useTheme from '../hooks/useTheme';
+import { GlobalStyles, globalStyles } from '../styles/GlobalStyles';
+import { AddFoodScreenStyles } from '../styles/AddFoodScreen/AddFoodScreenStyles';
+
 import AddFoodSwitcher from '../components/AddFoodScreen/AddFoodSwitcher';
+
 import { addFood } from '../database/dataFood';
 
 const AddFoodScreen = ({route}) => {
+  const { styles } = useTheme(AddFoodScreenStyles);
+  const globalStyles = useTheme(GlobalStyles);
+
   const [name, setName] = useState('');
   const [calories, setCalories] = useState('');
   const [weight, setWeight] = useState('');
@@ -57,26 +64,5 @@ const AddFoodScreen = ({route}) => {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 10,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    marginTop: 5,
-  },
-});
 
 export default AddFoodScreen;

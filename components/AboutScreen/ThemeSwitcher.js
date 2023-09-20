@@ -1,10 +1,14 @@
 import React, {useContext} from 'react';
-import { View, StyleSheet, Switch, Text } from 'react-native';
+import { View, Switch, Text } from 'react-native';
+
+import useTheme from '../../hooks/useTheme';
+import { ThemeSwitcherStyles } from '../../styles/AboutScreen/ThemeSwitcherStyles';
 
 import { ThemeContext } from '../../context/ThemeContext';
-import Colors from '../../styles/Colors';
 
 const ThemeSwitcher = () => {
+  const { styles } = useTheme(ThemeSwitcherStyles);
+
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
@@ -20,16 +24,5 @@ const ThemeSwitcher = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 10,
-    backgroundColor: Colors.secondaryColor,
-    borderRadius: 10,
-  },
-});
 
 export default ThemeSwitcher;

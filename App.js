@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native';
 
-import useTheme from './hooks/UseTheme';
+import useTheme from './hooks/useTheme';
 import { ThemeProvider } from './context/ThemeContext';
 import { AppStyles } from './styles/AppStyles';
-import Colors from './styles/Colors';
 
 import Navigator from './navigation/Navigator';
 import LoadingScreen from './screens/LoadingScreen';
@@ -15,9 +14,7 @@ import { initRationTable, initRationFoodTable } from './database/dataRation';
 
 
 export default function App() {
-  const { theme } = useTheme();
-  const themeColors = Colors[theme];
-  const styles = useMemo(() => AppStyles(themeColors), [themeColors]);
+  const { styles } = useTheme(AppStyles);
 
   const [isLoading, setIsLoading] = useState(true);
 
