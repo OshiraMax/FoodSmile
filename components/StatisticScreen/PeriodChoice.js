@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
+import useTheme from '../../hooks/useTheme';
+import { PeriodChoiceStyles } from '../../styles/StatisticScreen/PeriodChoiceStyles';
+
 const PeriodChoice = () => {
+  const { styles } = useTheme(PeriodChoiceStyles);
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [modalVisible, setModalVisible] = useState(false);
@@ -57,24 +62,5 @@ const PeriodChoice = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-    modalContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)'
-    },
-    modalContent: {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      padding: 20
-    },
-    modalButtons: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      marginTop: 20
-    }
-  });
 
 export default PeriodChoice;

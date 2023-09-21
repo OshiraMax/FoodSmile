@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { globalStyles } from '../styles/GlobalStyles';
+import useTheme from '../hooks/useTheme';
+import { AddRationScreenStyles } from '../styles/AddRationScreen/AddRationScreenStyles';
+import { GlobalStyles } from '../styles/GlobalStyles';
+
 import AddFoodSwitcher from '../components/AddFoodScreen/AddFoodSwitcher';
 
 const AddRationScreen = () => {
+  const { styles } = useTheme(AddRationScreenStyles);
+  const { styles: globalStyles } = useTheme(GlobalStyles);
+
+
   const [name, setName] = useState('');
   const [calories, setCalories] = useState('');
   const [weight, setWeight] = useState('');
@@ -36,8 +43,5 @@ const AddRationScreen = () => {
       </View>
   );
 }
-
-const styles = StyleSheet.create({
-});
 
 export default AddRationScreen;

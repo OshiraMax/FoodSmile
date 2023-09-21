@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { globalStyles } from '../styles/GlobalStyles';
+import useTheme from '../hooks/useTheme';
+import { MealScreenStyles } from '../styles/MealScreen/MealScreenStyles';
+import { GlobalStyles } from '../styles/GlobalStyles';
+
 import RationSwitcher from '../components/RationScreen/RationSwitcher';
+
 import { fetchAllFood, deleteFood } from '../database/dataFood';
 
 const MealScreen = ({ navigation }) => {
+  const { styles } = useTheme(MealScreenStyles);
+  const { styles: globalStyles } = useTheme(GlobalStyles);
+
   const [food, setFood] = useState([]);
   const [search, setSearch] = useState('');
 
@@ -59,49 +66,6 @@ const MealScreen = ({ navigation }) => {
 
       </View>
   );
-};
-
-const styles = StyleSheet.create({
-    searchContainer: {
-      width: '100%',
-      paddingHorizontal: 10,
-      marginBottom: 10,
-    },
-
-    searchInput: {
-      borderColor: '#ccc',
-      borderWidth: 1,
-      borderRadius: 5,
-      paddingHorizontal: 10,
-      height: 40,
-    },
-
-    list: {
-      maxHeight: '70%',
-    },
-
-    product: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: 10,
-      borderBottomWidth: 1,
-      borderColor: '#ccc',
-    },
-
-    addButton: {
-      backgroundColor: '#4dbb63',
-      paddingHorizontal: 20,
-      paddingVertical: 10,
-      borderRadius: 5,
-      marginTop: 10,
-    },
-
-    buttonText: {
-      color: 'white',
-      fontWeight: 'bold',
-    },
-  });
-  
+};  
 
 export default MealScreen;

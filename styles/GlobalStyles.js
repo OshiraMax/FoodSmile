@@ -6,10 +6,3 @@ export const GlobalStyles = (themeColors) => StyleSheet.create({
         backgroundColor: themeColors.backgroundColor,
     },
 });
-
-export const globalStyles = (themeColors) => StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: themeColors.backgroundColor,
-    },
-});

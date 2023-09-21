@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
-import Colors from '../../styles/Colors';
+import useTheme from '../../hooks/useTheme';
+import { RationSwitcherStyles } from '../../styles/RationScreen/RationSwitcherStyles';
 
 const RationSwitcher = ({ navigation, activeScreen }) => {
+  const { styles } = useTheme(RationSwitcherStyles);
+
   const getButtonStyle = (screen) => {
     return screen === activeScreen ? styles.activeButton : styles.button;
   };
@@ -25,34 +28,5 @@ const RationSwitcher = ({ navigation, activeScreen }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    height: 50,
-    backgroundColor: Colors.buttonColor,
-  },
-  button: {
-    flex: 1,
-    
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
-  activeButton: {
-    flex: 1,
-    borderWidth: 2,
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    backgroundColor: Colors.secondaryColor,
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
 
 export default RationSwitcher;

@@ -13,7 +13,7 @@ const goals = ['Похудеть', 'Набрать вес', 'Поддержив�
 
 const AboutScreen = () => {
   const { styles } = useTheme(AboutscreenStyles);
-  const globalStyles = useTheme(GlobalStyles);
+  const { styles: globalStyles } = useTheme(GlobalStyles);
 
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');

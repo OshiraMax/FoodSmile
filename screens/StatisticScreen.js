@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-import { globalStyles } from '../styles/GlobalStyles';
+import useTheme from '../hooks/useTheme';
+import { StatisticScreenStyles } from '../styles/StatisticScreen/StatisticScreenStyles';
+import { GlobalStyles } from '../styles/GlobalStyles';
+
 import StatisticChart from '../components/StatisticScreen/StatisticChart';
 
 const StatisticScreen = () => {
+  const { styles } = useTheme(StatisticScreenStyles);
+  const { styles: globalStyles } = useTheme(GlobalStyles);
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [modalVisible, setModalVisible] = useState(false);
@@ -88,62 +94,5 @@ return (
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-    selectPeriodTitle: {
-        height: 50,
-        backgroundColor: '#ccc',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 20,
-        marginHorizontal: '20%',
-      },
-
-      selectPeriodText: {
-        fontSize: 20,
-      },
-
-      dateButtonsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30,
-      },
-
-      dateButton: {
-        width: 170,
-        height: 50,
-        backgroundColor: '#ccc',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-
-      dateButtonText: {
-        fontSize: 18,
-      },
-
-      selectedPeriodContainer: {
-        marginTop: 20,
-        alignItems: 'center',
-      },
-
-      selectedPeriodText: {
-        fontSize: 20,
-      },
-
-      statisticsChart: {
-        marginTop: 50,
-        alignItems: 'center',
-      },
-
-      statisticsContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: 20,
-      },
-
-      statisticText: {
-      },
-});  
 
 export default StatisticScreen;

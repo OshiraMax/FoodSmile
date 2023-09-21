@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import useTheme from '../hooks/useTheme';
-import { GlobalStyles, globalStyles } from '../styles/GlobalStyles';
+import { GlobalStyles } from '../styles/GlobalStyles';
 import { AddFoodScreenStyles } from '../styles/AddFoodScreen/AddFoodScreenStyles';
 
 import AddFoodSwitcher from '../components/AddFoodScreen/AddFoodSwitcher';
@@ -12,7 +12,7 @@ import { addFood } from '../database/dataFood';
 
 const AddFoodScreen = ({route}) => {
   const { styles } = useTheme(AddFoodScreenStyles);
-  const globalStyles = useTheme(GlobalStyles);
+  const { styles: globalStyles } = useTheme(GlobalStyles);
 
   const [name, setName] = useState('');
   const [calories, setCalories] = useState('');

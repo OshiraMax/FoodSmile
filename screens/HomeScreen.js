@@ -11,7 +11,7 @@ import { HomeScreenStyles } from '../styles/HomeScreen/HomeScreenStyles';
 
 const HomeScreen = () => {
     const { styles } = useTheme(HomeScreenStyles);
-    const globalStyles = useTheme(GlobalStyles);
+    const { styles: globalStyles } = useTheme(GlobalStyles);
 
 return (
         <View style={globalStyles.container}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,20 +12,13 @@ import AboutScreen from '../screens/AboutScreen';
 import AddRationScreen from '../screens/AddRationScreen';
 import AddNewRationScreen from '../screens/AddNewRationScreen';
 
+import { ThemeContext } from '../context/ThemeContext';
 import Colors from '../styles/Colors';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 const RationStack = createNativeStackNavigator();
 const AddStack = createNativeStackNavigator();
-
-const screenOptions = {
-  headerShown: false,
-  tabBarStyle: { backgroundColor: Colors.mainColor },
-  tabBarShowIcon: true,
-  tabBarShowLabel: false,
-  tabBarIndicatorStyle: { backgroundColor: Colors.secondaryColor },
-};
 
 function HomeStack() {
   return (
@@ -70,6 +63,17 @@ function getTabBarIcon(name) {
 }
 
 export default function Navigator() {
+  const { theme } = useContext(ThemeContext);
+  const themeColors = Colors[theme];
+
+  const screenOptions = {
+    headerShown: false,
+    tabBarStyle: { backgroundColor: themeColors.mainColor },
+    tabBarShowIcon: true,
+    tabBarShowLabel: false,
+    tabBarIndicatorStyle: { backgroundColor: themeColors.secondaryColor },
+  };
+
   return (
         <Tab.Navigator tabBarPosition='bottom' screenOptions={{ ...screenOptions }}>
           <Tab.Screen name="Главная" component={HomeStack} options={{tabBarIcon: getTabBarIcon('md-home')}}/>

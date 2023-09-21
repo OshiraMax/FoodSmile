@@ -2,11 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 import * as FileSystem from 'expo-file-system';
 
-import { globalStyles } from '../styles/GlobalStyles';
-import { fetchRations, fetchRationFoods } from '../database/dataRation';
+import useTheme from '../hooks/useTheme';
+import { RationScreenStyles } from '../styles/RationScreen/RationScreenStyles';
+import { GlobalStyles } from '../styles/GlobalStyles';
+
 import RationSwitcher from '../components/RationScreen/RationSwitcher';
 
+import { fetchRations, fetchRationFoods } from '../database/dataRation';
+
 const RationScreen = ({ navigation }) => {
+  const { styles } = useTheme(RationScreenStyles);
+  const { styles: globalStyles } = useTheme(GlobalStyles);
+
+
   const [searchText, setSearchText] = useState('');
   const [rations, setRations] = useState([]);
 
@@ -95,63 +103,5 @@ const FileSystemPath = async () => {
       </View>
   );
 };
-
-const styles = StyleSheet.create({
-  searchContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '10%',
-  },
-
-  searchInput: {
-      width: '80%',
-  },
-
-  filterButton: {
-      width: '20%',
-  },
-
-  rationList: {
-      height: '75%',
-  },
-
-  rationItem: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: 10,
-      borderBottomWidth: 1,
-      borderColor: '#ccc',
-  },
-
-  rationHeader: {
-      width: '50%',
-  },
-
-  rationContent: {
-      width: '75%',
-      paddingLeft: '5%',
-  },
-  rationActions: {
-      width: '15%',
-      paddingRight: '5%',
-  },
-
-  buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      height: '10%',
-  },
-
-  button: {
-      width: '45%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 10,
-      backgroundColor: '#ccc',
-      borderRadius: 5,
-  },
-});
 
 export default RationScreen;
