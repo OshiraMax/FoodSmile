@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, } from 'react-native';
 
 import useTheme from './hooks/useTheme';
 import { ThemeProvider } from './context/ThemeContext';
@@ -12,8 +12,15 @@ import LoadingScreen from './screens/LoadingScreen';
 import { initFoodTable } from './database/dataFood';
 import { initRationTable, initRationFoodTable } from './database/dataRation';
 
+export default function AppWrapper() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+}
 
-export default function App() {
+function App() {
   const { styles } = useTheme(AppStyles);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -38,12 +45,12 @@ export default function App() {
   }
 
   return (
-     <ThemeProvider>
+      <>
           <SafeAreaView style={styles.savearea}>
             <NavigationContainer>
               <Navigator />
             </NavigationContainer>
           </SafeAreaView>
-      </ThemeProvider>
+      </>
   );
 }
