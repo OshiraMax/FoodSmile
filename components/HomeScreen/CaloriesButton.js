@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import useTheme from '../../hooks/useTheme';
+import useStyles from '../../hooks/useStyles';
 import { CaloriesButtonStyles } from '../../styles/HomeScreen/CaloriesButtonStyles';
 
 const CaloriesButton = () => {
-    const { styles } = useTheme(CaloriesButtonStyles);
+    const { styles } = useStyles(CaloriesButtonStyles);
 
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [calories, setCalories] = useState(0);

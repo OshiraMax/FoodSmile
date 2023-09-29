@@ -5,13 +5,13 @@ import DateSwitcher from '../components/HomeScreen/DateSwitcher';
 import CaloriesButton from '../components/HomeScreen/CaloriesButton';
 import LogFood from '../components/HomeScreen/LogFood';
 
-import useTheme from '../hooks/useTheme';
+import useStyles from '../hooks/useStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 import { HomeScreenStyles } from '../styles/HomeScreen/HomeScreenStyles';
 
 const HomeScreen = () => {
-    const { styles } = useTheme(HomeScreenStyles);
-    const { styles: globalStyles } = useTheme(GlobalStyles);
+    const { styles } = useStyles(HomeScreenStyles);
+    const { styles: globalStyles } = useStyles(GlobalStyles);
 
 return (
         <View style={globalStyles.container}>

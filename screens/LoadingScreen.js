@@ -1,13 +1,13 @@
 import React from 'react';
 import { Image, View } from 'react-native';
 
-import useTheme from '../hooks/useTheme';
+import useStyles from '../hooks/useStyles';
 import { LoadingScreenStyles } from '../styles/LoadingScreen/LoadingScreenStyles';
 
 import logo from '../assets/logo.png';
 
 const LoadingScreen = () => {
-  const { styles } = useTheme(LoadingScreenStyles);
+  const { styles } = useStyles(LoadingScreenStyles);
   return (
     <View style={styles.container}>
       <Image source={logo} style={styles.logo} />

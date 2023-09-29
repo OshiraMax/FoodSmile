@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
-import useTheme from '../../hooks/useTheme';
+import useStyles from '../../hooks/useStyles';
 import { StatisticChartStyles } from '../../styles/StatisticScreen/StatisticChartStyles';
 
 const StatisticChart = ({ data, startDate, endDate }) => {
-  const { styles } = useTheme(StatisticChartStyles);
+  const { styles } = useStyles(StatisticChartStyles);
 
   const screenWidth = Dimensions.get('window').width;
   const chartWidth = screenWidth * 0.9;

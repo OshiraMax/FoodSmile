@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import useTheme from '../hooks/useTheme';
+import useStyles from '../hooks/useStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 import { AddFoodScreenStyles } from '../styles/AddFoodScreen/AddFoodScreenStyles';
 
@@ -11,8 +11,8 @@ import AddFoodSwitcher from '../components/AddFoodScreen/AddFoodSwitcher';
 import { addFood } from '../database/dataFood';
 
 const AddFoodScreen = ({route}) => {
-  const { styles } = useTheme(AddFoodScreenStyles);
-  const { styles: globalStyles } = useTheme(GlobalStyles);
+  const { styles } = useStyles(AddFoodScreenStyles);
+  const { styles: globalStyles } = useStyles(GlobalStyles);
 
   const [name, setName] = useState('');
   const [calories, setCalories] = useState('');

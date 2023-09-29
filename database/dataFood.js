@@ -14,6 +14,7 @@ const checkFoodTable = async (tx) => {
   });
 };
 
+
 export const initFoodTable = () => {
   return new Promise((resolve) => {
     db.transaction(async (tx) => {
@@ -29,12 +30,36 @@ export const initFoodTable = () => {
           if (rowCount === 0) {
             await insertInitialFood(tx);
           }
+          tx.executeSql(
+            `CREATE INDEX IF NOT EXISTS idx_food_name ON food(name);`
+          );
           resolve();
         }
       )
     });
   });
 };
+
+export const initUsageTable = () => {
+  return new Promise((resolve) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        `CREATE TABLE IF NOT EXISTS usage
+        (id INTEGER PRIMARY KEY AUTOINCREMENT,
+        food_id INTEGER NOT NULL,
+        quantity REAL NOT NULL,
+        calories REAL NOT NULL,
+        timestamp TEXT NOT NULL,
+        FOREIGN KEY (food_id) REFERENCES food (id));`,
+        [],
+        () => {
+          resolve();
+        }
+      );
+    });
+  });
+};
+
 
 const insertInitialFood = (tx) => {
   return new Promise(async (resolve) => {

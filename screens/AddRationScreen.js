@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import useTheme from '../hooks/useTheme';
+import useStyles from '../hooks/useStyles';
 import { AddRationScreenStyles } from '../styles/AddRationScreen/AddRationScreenStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 
 import AddFoodSwitcher from '../components/AddFoodScreen/AddFoodSwitcher';
 
 const AddRationScreen = () => {
-  const { styles } = useTheme(AddRationScreenStyles);
-  const { styles: globalStyles } = useTheme(GlobalStyles);
+  const { styles } = useStyles(AddRationScreenStyles);
+  const { styles: globalStyles } = useStyles(GlobalStyles);
 
 
   const [name, setName] = useState('');

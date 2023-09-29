@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-import useTheme from '../hooks/useTheme';
+import useStyles from '../hooks/useStyles';
 import { StatisticScreenStyles } from '../styles/StatisticScreen/StatisticScreenStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 
 import StatisticChart from '../components/StatisticScreen/StatisticChart';
 
 const StatisticScreen = () => {
-  const { styles } = useTheme(StatisticScreenStyles);
-  const { styles: globalStyles } = useTheme(GlobalStyles);
+  const { styles } = useStyles(StatisticScreenStyles);
+  const { styles: globalStyles } = useStyles(GlobalStyles);
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());

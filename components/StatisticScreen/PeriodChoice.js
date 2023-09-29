@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-import useTheme from '../../hooks/useTheme';
+import useStyles from '../../hooks/useStyles';
 import { PeriodChoiceStyles } from '../../styles/StatisticScreen/PeriodChoiceStyles';
 
 const PeriodChoice = () => {
-  const { styles } = useTheme(PeriodChoiceStyles);
+  const { styles } = useStyles(PeriodChoiceStyles);
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());

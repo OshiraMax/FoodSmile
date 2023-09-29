@@ -1,13 +1,13 @@
 import React, {useContext} from 'react';
 import { View, Switch, Text } from 'react-native';
 
-import useTheme from '../../hooks/useTheme';
+import useStyles from '../../hooks/useStyles';
 import { ThemeSwitcherStyles } from '../../styles/AboutScreen/ThemeSwitcherStyles';
 
 import { ThemeContext } from '../../context/ThemeContext';
 
 const ThemeSwitcher = () => {
-  const { styles } = useTheme(ThemeSwitcherStyles);
+  const { styles } = useStyles(ThemeSwitcherStyles);
 
   const { theme, toggleTheme } = useContext(ThemeContext);
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 
-import useTheme from '../../hooks/useTheme';
+import useStyles from '../../hooks/useStyles';
 import { LogFoodStyles } from '../../styles/HomeScreen/LogFoodStyles';
 
 const DATA = [ 
@@ -15,7 +15,7 @@ const DATA = [
 ];
 
 const LogFood = () => {
-  const { styles } = useTheme(LogFoodStyles);
+  const { styles } = useStyles(LogFoodStyles);
   
   const [data, setData] = useState(DATA);
 

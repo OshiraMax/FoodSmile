@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-import useTheme from '../hooks/useTheme';
+import useStyles from '../hooks/useStyles';
 import { AboutscreenStyles } from '../styles/AboutScreen/AboutScreenStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 
@@ -12,8 +12,8 @@ const activityLevels = ['Сидячий образ жизни', 'Легкая а
 const goals = ['Похудеть', 'Набрать вес', 'Поддерживать вес'];
 
 const AboutScreen = () => {
-  const { styles } = useTheme(AboutscreenStyles);
-  const { styles: globalStyles } = useTheme(GlobalStyles);
+  const { styles } = useStyles(AboutscreenStyles);
+  const { styles: globalStyles } = useStyles(GlobalStyles);
 
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');

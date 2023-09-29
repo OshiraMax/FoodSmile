@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import useTheme from '../../hooks/useTheme';
+import useStyles from '../../hooks/useStyles';
 import { RationSwitcherStyles } from '../../styles/RationScreen/RationSwitcherStyles';
 
 const RationSwitcher = ({ navigation, activeScreen }) => {
-  const { styles } = useTheme(RationSwitcherStyles);
+  const { styles } = useStyles(RationSwitcherStyles);
 
   const getButtonStyle = (screen) => {
     return screen === activeScreen ? styles.activeButton : styles.button;

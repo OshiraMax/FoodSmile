@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import useTheme from '../hooks/useTheme';
+import useStyles from '../hooks/useStyles';
 import { AddNewRationScreenStyles } from '../styles/AddNewRationScreen/AddNewRationScreenStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 
@@ -10,8 +10,8 @@ import { fetchAllFood } from '../database/dataFood';
 import { addRation, addRationFood } from '../database/dataRation';
 
 const AddNewRationScreen = ({ navigation }) => {
-    const { styles } = useTheme(AddNewRationScreenStyles);
-    const { styles: globalStyles } = useTheme(GlobalStyles);
+    const { styles } = useStyles(AddNewRationScreenStyles);
+    const { styles: globalStyles } = useStyles(GlobalStyles);
 
     const [rationName, setRationName] = useState('');
     const [foodList, setFoodList] = useState([]);

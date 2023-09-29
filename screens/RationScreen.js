@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, FlatList, TouchableOpacity} from 'react-native';
 import * as FileSystem from 'expo-file-system';
 
-import useTheme from '../hooks/useTheme';
+import useStyles from '../hooks/useStyles';
 import { RationScreenStyles } from '../styles/RationScreen/RationScreenStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 
@@ -11,8 +11,8 @@ import RationSwitcher from '../components/RationScreen/RationSwitcher';
 import { fetchRations, fetchRationFoods } from '../database/dataRation';
 
 const RationScreen = ({ navigation }) => {
-  const { styles } = useTheme(RationScreenStyles);
-  const { styles: globalStyles } = useTheme(GlobalStyles);
+  const { styles } = useStyles(RationScreenStyles);
+  const { styles: globalStyles } = useStyles(GlobalStyles);
 
 
   const [searchText, setSearchText] = useState('');

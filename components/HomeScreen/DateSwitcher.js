@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import useTheme from '../../hooks/useTheme';
+import useStyles from '../../hooks/useStyles';
 import { DateSwitcherStyles } from '../../styles/HomeScreen/DateSwitcherStyles';
 
 const DateSwitcher = () => {
-  const { styles } = useTheme(DateSwitcherStyles);
+  const { styles } = useStyles(DateSwitcherStyles);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
