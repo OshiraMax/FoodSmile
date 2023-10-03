@@ -50,7 +50,7 @@ function RationMealStack() {
           animation: 'fade', 
         }}>
         <RationStack.Screen name="Ration" component={RationScreen} />
-        <RationStack.Screen name="Meal" component={MealScreen} />
+        <RationStack.Screen name="Meal" component={MealScreen} options={{ gestureEnabled: false }}/>
         <RationStack.Screen name="AddNewRation" component={AddNewRationScreen} />
       </RationStack.Navigator>
   )

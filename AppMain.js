@@ -39,7 +39,7 @@ export default function AppMain() {
   return (
           <SafeAreaView style={styles.savearea}>
             <NavigationContainer>
-              <Navigator />
+                <Navigator />
             </NavigationContainer>
           </SafeAreaView>
   );

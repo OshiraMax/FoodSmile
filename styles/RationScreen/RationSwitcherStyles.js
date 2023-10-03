@@ -5,25 +5,33 @@ export const RationSwitcherStyles = (themeColors) => StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       width: '100%',
-      height: 50,
-      backgroundColor: themeColors.buttonColor,
+      height: 70,
+      backgroundColor: themeColors.backgroundColor,
+      justifyContent: 'space-between', 
+      padding: 10,
     },
     button: {
       flex: 1,
       alignItems: 'center',
       paddingHorizontal: 10,
-      paddingVertical: 5,
+      paddingVertical: 10, // Увеличен отступ
+      marginLeft: 5, // Добавлен отступ слева
+      marginRight: 5, // Добавлен отступ справа
+      borderRadius: 25,
     },
     activeButton: {
       flex: 1,
       borderWidth: 2,
       alignItems: 'center',
       paddingHorizontal: 10,
-      paddingVertical: 10,
+      paddingVertical: 10, // Увеличен отступ
       backgroundColor: themeColors.secondaryColor,
+      marginLeft: 5, // Добавлен отступ слева
+      marginRight: 5, // Добавлен отступ справа
+      borderRadius: 20,
     },
     buttonText: {
-      fontSize: 16,
+      fontSize: 18,
       fontWeight: 'bold',
     },
   });  

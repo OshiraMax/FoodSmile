@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import useStyles from '../../hooks/useStyles';
+import SwipeToDelete from '../../hooks/SwipeToDelete';
 import { FoodListStyles } from '../../styles/MealScreen/FoodListStyles';
 
 import { deleteFood } from '../../database/dataFood';
@@ -17,23 +18,26 @@ const FoodList = ({ setFood, filteredFood }) => {
   }, [setFood]);
 
   const renderItem = ({ item }) => (
-    <View style={styles.product}>
-      <Text style={styles.productName}>{item.name}</Text>
-      <Text style={styles.productCalories}>{item.calories}</Text>
-      <Text style={styles.productUnit}>{item.unit}</Text>
-      <TouchableOpacity onPress={() => handleDeleteFood(item.id)}>
-        <MaterialIcons name="delete" size={24} color="red" />
-      </TouchableOpacity>
-    </View>
+    <SwipeToDelete onDelete={() => handleDeleteFood(item.id)}>
+        <View style={styles.product} >
+          <Text style={styles.productName}>{item.name}</Text>
+          <Text style={styles.productCalories}>{item.calories}</Text>
+          <Text style={styles.productUnit}>{item.unit}</Text>
+          <TouchableOpacity onPress={() => handleDeleteFood(item.id)}>
+            <MaterialIcons name="delete" size={24} color="red" />
+          </TouchableOpacity>
+        </View>
+    </SwipeToDelete>
   );
   
   return (
-    <FlatList
-      style={styles.list}
-      data={filteredFood}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-    />
+      <FlatList
+        style={styles.list}
+        data={filteredFood}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+    
   );
 };
 

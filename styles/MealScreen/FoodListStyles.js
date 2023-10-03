@@ -5,6 +5,7 @@ export const FoodListStyles = (themeColors) => StyleSheet.create({
       flex: 1,
       marginTop: 10,
       marginBottom: 10,
+      paddingBottom: 10,
     },
 
     product: {
@@ -12,8 +13,10 @@ export const FoodListStyles = (themeColors) => StyleSheet.create({
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: 10,
-      borderBottomWidth: 1,
+      borderWidth: 1,
+      borderRadius: 5,
       borderColor: '#ccc',
+      margin: 2
     },
 
     productName: {
