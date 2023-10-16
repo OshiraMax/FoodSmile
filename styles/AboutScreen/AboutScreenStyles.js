@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const AboutscreenStyles = (themeColors) => StyleSheet.create({
+export const AboutScreenStyles = (themeColors) => StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'space-between',

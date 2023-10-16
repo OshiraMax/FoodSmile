@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import useStyles from '../hooks/useStyles';
-import { AboutscreenStyles } from '../styles/AboutScreen/AboutScreenStyles';
+import { AboutScreenStyles } from '../styles/AboutScreen/AboutScreenStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 
 import ThemeSwitcher from '../components/AboutScreen/ThemeSwitcher';
@@ -12,7 +12,7 @@ const activityLevels = ['Сидячий образ жизни', 'Легкая а
 const goals = ['Похудеть', 'Набрать вес', 'Поддерживать вес'];
 
 const AboutScreen = () => {
-  const { styles } = useStyles(AboutscreenStyles);
+  const { styles } = useStyles(AboutScreenStyles);
   const { styles: globalStyles } = useStyles(GlobalStyles);
 
   const [height, setHeight] = useState('');

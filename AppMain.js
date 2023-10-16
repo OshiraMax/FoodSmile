@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaView, } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import * as Keychain from 'react-native-keychain';
 
 import useStyles from './hooks/useStyles';
 import { AppStyles } from './styles/AppStyles';
 
 import Navigator from './navigation/Navigator';
 import LoadingScreen from './screens/LoadingScreen';
+import LoginScreen from './screens/LoginScreen';
 
 import { initFoodTable, initUsageTable } from './database/dataFood';
 import { initRationTable, initRationFoodTable } from './database/dataRation';
@@ -15,6 +17,7 @@ export default function AppMain() {
   const { styles } = useStyles(AppStyles);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     async function loadApp() {
@@ -24,8 +27,12 @@ export default function AppMain() {
       await initFoodTable();
       await initUsageTable();
 
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      const credentials = await Keychain.getGenericPassword();
+      if (credentials) {
+        setIsAuthenticated(true);
+      }
 
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       setIsLoading(false);
     }
 
@@ -39,7 +46,7 @@ export default function AppMain() {
   return (
           <SafeAreaView style={styles.savearea}>
             <NavigationContainer>
-                <Navigator />
+              {isAuthenticated ? <Navigator /> : <LoginScreen />}
             </NavigationContainer>
           </SafeAreaView>
   );

@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import useStyles from '../../hooks/useStyles';
-import SwipeToDelete from '../../hooks/SwipeToDelete';
+import SwipeToDelete from './SwipeToDelete';
 import { FoodListStyles } from '../../styles/MealScreen/FoodListStyles';
 
 import { deleteFood } from '../../database/dataFood';
