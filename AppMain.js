@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native';
-import * as Keychain from 'react-native-keychain';
+import * as SecureStore from 'expo-secure-store';
 
 import useStyles from './hooks/useStyles';
 import { AppStyles } from './styles/AppStyles';
@@ -27,10 +27,10 @@ export default function AppMain() {
       await initFoodTable();
       await initUsageTable();
 
-      const credentials = await Keychain.getGenericPassword();
-      if (credentials) {
-        setIsAuthenticated(true);
-      }
+      const token = await SecureStore.getItemAsync('userToken');
+        if (token) {
+          setIsAuthenticated(true);
+        }
 
       await new Promise((resolve) => setTimeout(resolve, 3000));
       setIsLoading(false);

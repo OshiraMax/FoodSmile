@@ -1,4 +1,4 @@
-import * as Keychain from 'react-native-keychain';
+import * as SecureStore from 'expo-secure-store';
 
 const handleLogin = async (email, password) => {
     try {
@@ -16,7 +16,7 @@ const handleLogin = async (email, password) => {
       const data = await response.json();
   
       if (response.status === 200) {
-        await Keychain.setGenericPassword(email, data.token);
+        await SecureStore.setItemAsync('userToken', data.token);
         return { success: true, data: data };
       } else {
         return { success: false, message: 'Authentication failed' };

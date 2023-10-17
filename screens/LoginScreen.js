@@ -6,7 +6,7 @@ import useStyles from '../hooks/useStyles';
 import { LoginScreenStyles } from '../styles/LoginScreen/LoginScreenStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 
-import handleLogin from '../components/LoginScreen/HandleLogin';
+import handleLogin from '../components/LoginScreen/handleLogin';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
