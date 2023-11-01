@@ -19,14 +19,14 @@ const LoginScreen = () => {
   const onLoginPress = async () => {
     const result = await handleLogin(email, password);
     if (result.success) {
-        navigation.navigate('Главная');
+        navigation.jumpTo('Главная');
     } else {
         alert('Authentication failed');
     }
   };  
 
   const onRegisterPress = () => {
-    navigation.navigate('RegisterScreen');
+    navigation.navigate('Register');
   };
 
   return (

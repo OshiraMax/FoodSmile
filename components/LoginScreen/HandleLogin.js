@@ -8,19 +8,19 @@ const handleLogin = async (email, password) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: email,
+          email,
           passwordHash: password,
         }),
       });
   
-      const data = await response.json();
-  
-      if (response.status === 200) {
-        await SecureStore.setItemAsync('userToken', data.token);
-        return { success: true, data: data };
-      } else {
-        return { success: false, message: 'Authentication failed' };
+      if (response.ok) {
+        const { token } = await response.json();
+        await SecureStore.setItemAsync('userToken', token);
+        console.log ('Токен получен!');
+        return { success: true };
       }
+      const { message } = await response.json();
+      return { success: false, message };
     } catch (error) {
       return { success: false, message: error.message };
     }

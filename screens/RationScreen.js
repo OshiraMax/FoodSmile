@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, FlatList, TouchableOpacity} from 'react-native';
 import * as FileSystem from 'expo-file-system';
+import * as SecureStore from 'expo-secure-store';
 
 import useStyles from '../hooks/useStyles';
 import { RationScreenStyles } from '../styles/RationScreen/RationScreenStyles';
@@ -13,7 +14,6 @@ import { fetchRations, fetchRationFoods } from '../database/dataRation';
 const RationScreen = ({ navigation }) => {
   const { styles } = useStyles(RationScreenStyles);
   const { styles: globalStyles } = useStyles(GlobalStyles);
-
 
   const [searchText, setSearchText] = useState('');
   const [rations, setRations] = useState([]);
@@ -37,14 +37,17 @@ const RationScreen = ({ navigation }) => {
 const dbName = 'FoodSmile.db';
 const dbPath = `${FileSystem.documentDirectory}SQLite/${dbName}`;
 
-const FileSystemPath = async () => {
-    FileSystem.deleteAsync(dbPath)
-        .then(() => {
-            console.log('Database is deleted!');
-            })
-        .catch((error) => {
-            console.error(error);
-  });
+// const FileSystemPath = async () => {
+//     FileSystem.deleteAsync(dbPath)
+//         .then(() => {
+//             console.log('Database is deleted!');
+//             })
+//         .catch((error) => {
+//             console.error(error);
+//   });
+
+const deleteToken = async () => {
+    await SecureStore.deleteItemAsync('userToken');
 
     return (
       <View style={styles.rationItem}>
@@ -96,7 +99,7 @@ const FileSystemPath = async () => {
               <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddNewRation')}>
                   <Text>Add Ration</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button} /*onPress = {FileSystemPath}*/>
+              <TouchableOpacity style={styles.button} onPress = {deleteToken}>
                   <Text>Load Rations</Text>
               </TouchableOpacity>
           </View>

@@ -11,6 +11,8 @@ import MealScreen from '../screens/MealScreen';
 import AboutScreen from '../screens/AboutScreen';
 import AddRationScreen from '../screens/AddRationScreen';
 import AddNewRationScreen from '../screens/AddNewRationScreen';
+import RegisterScreen from '../screens/RegisterScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 import { ThemeContext } from '../context/ThemeContext';
 import Colors from '../styles/Colors';
@@ -19,13 +21,13 @@ const Stack = createNativeStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 const RationStack = createNativeStackNavigator();
 const AddStack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
 
 function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Main" component={HomeScreen} />
       <Stack.Screen name="AddFood" component={AddFoodStack} />
-      <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
     </Stack.Navigator>
   );
 }
@@ -63,9 +65,18 @@ function getTabBarIcon(name) {
   );
 }
 
-export default function Navigator() {
+export default function Navigator({ isAuthenticated }) {
   const { theme } = useContext(ThemeContext);
   const themeColors = Colors[theme];
+
+  if (!isAuthenticated) {
+    return (
+      <AuthStack.Navigator screenOptions={{ headerShown: false }}>
+        <AuthStack.Screen name="Login" component={LoginScreen} />
+        <AuthStack.Screen name="Register" component={RegisterScreen} />
+      </AuthStack.Navigator>
+    );
+  }
 
   const screenOptions = {
     headerShown: false,

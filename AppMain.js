@@ -8,7 +8,6 @@ import { AppStyles } from './styles/AppStyles';
 
 import Navigator from './navigation/Navigator';
 import LoadingScreen from './screens/LoadingScreen';
-import LoginScreen from './screens/LoginScreen';
 
 import { initFoodTable, initUsageTable } from './database/dataFood';
 import { initRationTable, initRationFoodTable } from './database/dataRation';
@@ -46,7 +45,7 @@ export default function AppMain() {
   return (
           <SafeAreaView style={styles.savearea}>
             <NavigationContainer>
-              {isAuthenticated ? <Navigator /> : <LoginScreen />}
+              <Navigator isAuthenticated={isAuthenticated}/> 
             </NavigationContainer>
           </SafeAreaView>
   );

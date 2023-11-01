@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
+import handleRegister from '../components/RegisterScreen/handleRegister';
+
 import useStyles from '../hooks/useStyles';
 import { RegisterScreenStyles } from '../styles/RegisterScreen/RegisterScreenStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
   const { styles } = useStyles(RegisterScreenStyles);
   const { styles: globalStyles } = useStyles(GlobalStyles);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  
 
-  const handleRegister = () => {
+  const handlePress = async () => {
+    const result = await handleRegister(email, password, confirmPassword);
+    if (result.success) {
+      navigation.navigate('Login');
+    } else {
+      console.log('Ошибка регистрации:', result.message);
+    }
   };
 
   return (
@@ -31,7 +41,14 @@ const RegisterScreen = () => {
         onChangeText={setPassword}
         value={password}
       />
-      <TouchableOpacity style={styles.button} onPress={handleRegister}>
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password"
+        secureTextEntry
+        onChangeText={setConfirmPassword}
+        value={confirmPassword}
+      />
+      <TouchableOpacity style={styles.button} onPress={handlePress}>
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
     </View>
