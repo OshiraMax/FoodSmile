@@ -14,7 +14,7 @@ import AddNewRationScreen from '../screens/AddNewRationScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import LoginScreen from '../screens/LoginScreen';
 
-import { ThemeContext } from '../context/ThemeContext';
+import { ThemeContext } from '../state/ThemeContext';
 import Colors from '../styles/Colors';
 
 const Stack = createNativeStackNavigator();

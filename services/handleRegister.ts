@@ -1,13 +1,20 @@
-import * as SecureStore from 'expo-secure-store';
+type RegisterResponse = {
+  success: boolean;
+  message?: string;
+};
 
-const handleRegister = async (email, password, confirmPassword) => {
+const handleRegister = async (
+  email: string, 
+  password: string, 
+  confirmPassword: string
+): Promise<RegisterResponse> => {
   if (password !== confirmPassword) {
     return { success: false, message: 'Passwords do not match' };
   }
 
   
   console.log('Отправка запроса на регистрацию');
-  const response = await fetch('http://192.168.0.12:8080/users/register', {
+  const response = await fetch('http://192.168.0.13:8080/users/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,10 +31,9 @@ const handleRegister = async (email, password, confirmPassword) => {
     if (responseBody === "User registered successfully") {
       console.log('Успешная регистрация');
       return { success: true };
-    }
-  } else {
-      return { success: false, message: 'Registration failed' };
+    } 
   }
+  return { success: false, message: 'Registration failed' };
 };
 
 export default handleRegister;

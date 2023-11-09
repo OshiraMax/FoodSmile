@@ -1,5 +1,13 @@
+type ColorScheme = {
+  mainColor: string;
+  secondaryColor: string;
+  thirdColor: string;
+  textColor: string;
+  backgroundColor: string;
+  buttonColor: string;
+};
 
-const Colors = {
+const Colors: Record<'light' | 'dark', ColorScheme> = {
   light: {
     mainColor: '#23c483',
     secondaryColor: '#FFF069',

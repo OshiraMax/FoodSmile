@@ -1,4 +1,4 @@
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider } from './state/ThemeContext';
 import AppMain from './AppMain';
 
 export default function App() {

@@ -1,8 +1,16 @@
 import * as SecureStore from 'expo-secure-store';
 
-const handleLogin = async (email, password) => {
+type LoginResponse = {
+  success: boolean;
+  message?: string;
+};
+
+const handleLogin = async (
+  email: string, 
+  password: string
+): Promise<LoginResponse> => {
     try {
-      const response = await fetch('http://192.168.0.12:8080/users/login', {
+      const response = await fetch('http://192.168.0.13:8080/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,7 +30,11 @@ const handleLogin = async (email, password) => {
       const { message } = await response.json();
       return { success: false, message };
     } catch (error) {
-      return { success: false, message: error.message };
+      if (error instanceof Error) {
+        return { success: false, message: error.message };
+      } else {
+        return { success: false, message: 'An unknown error occurred' };
+      }
     }
   };
   

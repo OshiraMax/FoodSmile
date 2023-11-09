@@ -4,7 +4,7 @@ import { View, Switch, Text } from 'react-native';
 import useStyles from '../../hooks/useStyles';
 import { ThemeSwitcherStyles } from '../../styles/AboutScreen/ThemeSwitcherStyles';
 
-import { ThemeContext } from '../../context/ThemeContext';
+import { ThemeContext } from '../../state/ThemeContext';
 
 const ThemeSwitcher = () => {
   const { styles } = useStyles(ThemeSwitcherStyles);

@@ -34,7 +34,7 @@ const CaloriesButton = () => {
         
     };
 
-return (
+  return (
     <TouchableOpacity
       style={[
         styles.button,

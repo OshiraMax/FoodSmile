@@ -1,14 +1,24 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext, ReactNode } from 'react';
 import { useColorScheme } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const ThemeContext = createContext({
+type ThemeContextType = {
+  theme: string;
+  toggleTheme: () => void;
+};
+
+export const ThemeContext = createContext<ThemeContextType>({
   theme: 'light',
   toggleTheme: () => {}
 });
 
-export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light'); // значение по умолчанию
+type ThemeProviderType = {
+  children: ReactNode;
+};
+
+export const ThemeProvider: React.FC<ThemeProviderType> = ({ children }) => {
+  const systemTheme = useColorScheme() || 'light';
+  const [theme, setTheme] = useState<string>(systemTheme); // значение по умолчанию
 
   useEffect(() => {
     const fetchTheme = async () => {
@@ -16,14 +26,13 @@ export const ThemeProvider = ({ children }) => {
       if (storedTheme) {
         setTheme(storedTheme);
       } else {
-        const systemTheme = useColorScheme();
         setTheme(systemTheme);
         await AsyncStorage.setItem('appTheme', systemTheme);
       }
     };
 
     fetchTheme();
-  }, []);
+  }, [systemTheme]);
 
   const toggleTheme = async () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';

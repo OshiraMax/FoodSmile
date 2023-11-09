@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import handleLogin from '../services/handleLogin';
+
 import useStyles from '../hooks/useStyles';
 import { LoginScreenStyles } from '../styles/LoginScreen/LoginScreenStyles';
 import { GlobalStyles } from '../styles/GlobalStyles';
-
-import handleLogin from '../components/LoginScreen/handleLogin';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
